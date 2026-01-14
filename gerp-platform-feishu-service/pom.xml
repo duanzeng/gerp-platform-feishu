@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>gerp-platform-feishu</artifactId>
+        <groupId>com.gerp.platform.feishu</groupId>
+        <version>${revision}-${qualifier}</version>
+    </parent>
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+    <artifactId>gerp-platform-feishu-service</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.gerp.platform.feishu</groupId>
+            <artifactId>gerp-platform-feishu-dao</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.gerp.platform.feishu</groupId>
+            <artifactId>gerp-platform-feishu-api</artifactId>
+        </dependency>
+
+        <!--参数透传依赖-->
+        <dependency>
+            <groupId>com.gerp.x</groupId>
+            <artifactId>xcloud-framework-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+
+        <!--mq-->
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-spring-boot-starter</artifactId>
+            <version>${rocketmq.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gerp.x</groupId>
+            <artifactId>x-common-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.gerp.platform.feishu</groupId>
+            <artifactId>gerp-platform-feishu-integration</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>3.1.8</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>gerp-platform-feishu</artifactId>
+        <groupId>com.gerp.platform.feishu</groupId>
+        <version>${revision}-${qualifier}</version>
+    </parent>
+
+    <artifactId>gerp-platform-feishu-api</artifactId>
+    <name>gerp-platform-feishu-api</name>
+<!--    发布jar包配置，相应的profiles为prd-->
+    <version>${revision}-${qualifier}</version>
+    <packaging>jar</packaging>
+    <description>浏览器平台api</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.gerp.x</groupId>
+            <artifactId>x-common-data</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+    <profiles>
+        <!-- 开发环境 -->
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <qualifier>SNAPSHOT</qualifier>
+            </properties>
+            <!-- 仅在dev的profile中，开启snapshots的仓库 -->
+            <repositories>
+                <repository>
+                    <id>maven-snapshots</id>
+                    <name>maven-snapshots</name>
+                    <url>http://maven.gerpgo.com:8081/repository/maven-snapshots/</url>
+                    <snapshots>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <!-- 仅在dev的profile中，配置SNAPSHOT的分发构建-->
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>maven-snapshots</id>
+                    <name>maven-snapshots</name>
+                    <url>http://maven.gerpgo.com:8081/repository/maven-snapshots/</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+        <!--测试环境 -->
+        <profile>
+            <id>test</id>
+            <properties>
+                <qualifier>RC</qualifier>
+            </properties>
+            <!-- 仅在test的profile中，开启RC的仓库 -->
+            <repositories>
+                <repository>
+                    <id>maven-release-candidate</id>
+                    <name>maven-release-candidate</name>
+                    <url>http://maven.gerpgo.com:8081/repository/maven-release-candidate/</url>
+                </repository>
+            </repositories>
+            <!-- 仅在test的profile中，配置RC的分发构建-->
+            <distributionManagement>
+                <repository>
+                    <id>maven-release-candidate</id>
+                    <name>maven-release-candidate</name>
+                    <url>http://maven.gerpgo.com:8081/repository/maven-release-candidate/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <!-- 生产环境 -->
+        <profile>
+            <id>prd</id>
+            <properties>
+                <qualifier>RELEASE</qualifier>
+            </properties>
+            <!-- 仅在prd的profile中，开启releases的仓库 -->
+            <repositories>
+                <repository>
+                    <id>maven-releases</id>
+                    <name>maven-releases</name>
+                    <url>http://maven.gerpgo.com:8081/repository/maven-releases/</url>
+                </repository>
+            </repositories>
+            <!-- 仅在prd的profile中，配置RELEASE的分发构建-->
+            <distributionManagement>
+                <repository>
+                    <id>maven-releases</id>
+                    <name>maven-releases</name>
+                    <url>http://maven.gerpgo.com:8081/repository/maven-releases/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
+</project>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>gerp-platform-feishu</artifactId>
+        <groupId>com.gerp.platform.feishu</groupId>
+        <version>${revision}-${qualifier}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>gerp-platform-feishu-integration</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.gerp.uac</groupId>
+            <artifactId>uac-admin-facade</artifactId>
+            <version>1.0.93-${qualifier}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.gerp.x</groupId>
+            <artifactId>x-common-data</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gerp.x</groupId>
+            <artifactId>xcloud-framework-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.gerp.platform.feishu</groupId>
+            <artifactId>gerp-platform-feishu-model</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

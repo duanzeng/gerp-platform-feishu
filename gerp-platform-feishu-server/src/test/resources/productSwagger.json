@@ -1,0 +1,1016 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "积加开发平台OpenApi",
+    "description": "部分动态字段请参考文档",
+    "version": "Beta-1.0"
+  },
+  "servers": [
+    {
+      "url": "https://open.gerpgo.com/api/open"
+    }
+  ],
+  "tags": [
+    {
+      "name": "purchase_goods_product_page"
+    }
+  ],
+  "paths": {
+    "/purchase/goods/product/page": {
+      "post": {
+        "tags": [
+          "purchase_goods_product_page"
+        ],
+        "summary": "查询产品列表",
+        "description": "",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "accessToken",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseGoodsProductPageVO",
+                "exampleSetFlag": false
+              },
+              "exampleSetFlag": false
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseGoodsProductPageModel",
+                  "exampleSetFlag": false
+                },
+                "exampleSetFlag": false
+              }
+            }
+          },
+          "400": {
+            "description": "https://open.gerpgo.com/qa"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PurchaseGoodsProductPageVO": {
+        "type": "object",
+        "properties": {
+          "brandList": {
+            "type": "array",
+            "description": "品牌资料表编码",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "categoryList": {
+            "type": "array",
+            "description": "品类资料表编码",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "pageInfo": {
+            "type": "object",
+            "properties": {
+              "page": {
+                "type": "integer",
+                "description": "页码",
+                "format": "int32",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              },
+              "pagesize": {
+                "type": "integer",
+                "description": "每页条数 [最大100条/页]",
+                "format": "int32",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              }
+            },
+            "description": "分页对象，直接分页与分页对象必须传一种",
+            "exampleSetFlag": false,
+            "types": [
+              "object"
+            ]
+          },
+          "page": {
+            "type": "integer",
+            "description": "页码，直接分页与分页对象必须传一种",
+            "format": "int32",
+            "exampleSetFlag": false,
+            "types": [
+              "integer"
+            ]
+          },
+          "pagesize": {
+            "type": "integer",
+            "description": "每页条数 [最大100条/页]",
+            "format": "int32",
+            "exampleSetFlag": false,
+            "types": [
+              "integer"
+            ]
+          },
+          "skuList": {
+            "type": "array",
+            "description": "skuList",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "platformMskuList": {
+            "type": "array",
+            "description": "多平台MSKU",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "mskuList": {
+            "type": "array",
+            "description": "亚马逊MSKU",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "state": {
+            "type": "integer",
+            "description": "状态 [0-正常，1-停用]",
+            "format": "int32",
+            "exampleSetFlag": false,
+            "types": [
+              "integer"
+            ]
+          },
+          "dateType": {
+            "type": "integer",
+            "description": "时间类型 [0-创建时间，1-更新时间]",
+            "format": "int32",
+            "exampleSetFlag": false,
+            "types": [
+              "integer"
+            ]
+          },
+          "startDate": {
+            "type": "string",
+            "description": "开始时间 [yyyy-MM-dd]",
+            "format": "date",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "endDate": {
+            "type": "string",
+            "description": "结束时间 [yyyy-MM-dd]",
+            "format": "date",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          }
+        },
+        "exampleSetFlag": false,
+        "types": [
+          "object"
+        ]
+      },
+      "PurchaseGoodsProductPageModel": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "响应码",
+            "format": "int32",
+            "exampleSetFlag": false,
+            "types": [
+              "integer"
+            ]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "page": {
+                "type": "integer",
+                "description": "当前第几页",
+                "format": "int32",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              },
+              "pagesize": {
+                "type": "integer",
+                "description": "当前每页条数",
+                "format": "int32",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              },
+              "rows": {
+                "type": "array",
+                "description": "接口返回内容分页列表",
+                "exampleSetFlag": false,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "addDate": {
+                      "type": "string",
+                      "description": "创建时间 [yyyy-MM-dd HH:mm:ss]",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "lastDate": {
+                      "type": "string",
+                      "description": "更新时间 [yyyy-MM-dd HH:mm:ss]",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "sku": {
+                      "type": "string",
+                      "description": "SKU",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "产品名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "briefName": {
+                      "type": "string",
+                      "description": "产品简称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "state": {
+                      "type": "integer",
+                      "description": "产品状态 [0-正常，1-停用]",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "smallImageUrl": {
+                      "type": "string",
+                      "description": "产品图片链接",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "assembly": {
+                      "type": "string",
+                      "description": "组合规则",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "assemblyLaborCost": {
+                      "type": "number",
+                      "description": "预计装配天数",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "assemblyPackage": {
+                      "type": "string",
+                      "description": "包材规则",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "brand": {
+                      "type": "string",
+                      "description": "品牌资料表编码",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "brandName": {
+                      "type": "string",
+                      "description": "品牌名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "category": {
+                      "type": "string",
+                      "description": "品类资料表编码",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "categoryName": {
+                      "type": "string",
+                      "description": "品类名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "chineseCustomsName": {
+                      "type": "string",
+                      "description": "中文报关名",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "englishCustomsName": {
+                      "type": "string",
+                      "description": "英文报关名",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "clothing": {
+                      "type": "boolean",
+                      "description": "是否属于服装类别 [0-否，1-是]",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "boolean"
+                      ]
+                    },
+                    "customsCode": {
+                      "type": "string",
+                      "description": "海关编码",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "描述",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "id",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "isInspection": {
+                      "type": "integer",
+                      "description": "是否商检 [0-否，1-是]",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "material": {
+                      "type": "string",
+                      "description": "材质",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "mskuList": {
+                      "type": "array",
+                      "description": "mskuList",
+                      "exampleSetFlag": false,
+                      "items": {
+                        "type": "string",
+                        "exampleSetFlag": false,
+                        "types": [
+                          "string"
+                        ]
+                      },
+                      "types": [
+                        "array"
+                      ]
+                    },
+                    "packageH": {
+                      "type": "number",
+                      "description": "包装尺寸 高",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "packageL": {
+                      "type": "number",
+                      "description": "包装尺寸 长",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "packageW": {
+                      "type": "number",
+                      "description": "包装尺寸 宽",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "packageWeight": {
+                      "type": "number",
+                      "description": "单品毛重（g）",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "productDeliveryDays": {
+                      "type": "integer",
+                      "description": "采购交期",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "productManagerAccount": {
+                      "type": "string",
+                      "description": "产品负责人",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "productManagerAccountId": {
+                      "type": "integer",
+                      "description": "产品负责人id",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "productType": {
+                      "type": "integer",
+                      "description": "产品类型 [0-成品，1-包材，2-组合成品，3-半成品]",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "productTypeName": {
+                      "type": "string",
+                      "description": "产品类型名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "productUsage": {
+                      "type": "string",
+                      "description": "用途",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "property": {
+                      "type": "string",
+                      "description": "属性",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "purchase": {
+                      "type": "integer",
+                      "description": "是否采购 [0-否，1-是]",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "purchaseAccount": {
+                      "type": "string",
+                      "description": "采购负责人",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "purchaseAccountId": {
+                      "type": "integer",
+                      "description": "采购负责人id",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "quote": {
+                      "type": "number",
+                      "description": "采购信息-参考成本",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "quoteAmount": {
+                      "type": "object",
+                      "properties": {
+                        "amountWithSymbol": {
+                          "type": "string",
+                          "description": "币种符号金额拼接",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "currencyAmount": {
+                          "type": "number",
+                          "description": "币种金额",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "number"
+                          ]
+                        },
+                        "currencyCode": {
+                          "type": "string",
+                          "description": "币种编码",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "currencySymbol": {
+                          "type": "string",
+                          "description": "币种符号",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "description": "采购信息-参考成本",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "object"
+                      ]
+                    },
+                    "remark": {
+                      "type": "string",
+                      "description": "备注",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "singleProductNetWeight": {
+                      "type": "number",
+                      "description": "单品净重 g",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "singleProductSizeH": {
+                      "type": "number",
+                      "description": "单品尺寸 高",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "singleProductSizeL": {
+                      "type": "number",
+                      "description": "单品尺寸 长",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "singleProductSizeW": {
+                      "type": "number",
+                      "description": "单品尺寸 宽",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "specification": {
+                      "type": "string",
+                      "description": "规格",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "spu": {
+                      "type": "string",
+                      "description": "SPU",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "spuName": {
+                      "type": "string",
+                      "description": "SPU名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "产品标题",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "transferGroup": {
+                      "type": "string",
+                      "description": "物流分组",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "unit": {
+                      "type": "string",
+                      "description": "单位",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "pmsMskuDTOS": {
+                      "type": "array",
+                      "description": "产品关联MSKU信息，亚马逊按仓库维度，多平台按站点维度",
+                      "exampleSetFlag": false,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "msku": {
+                            "type": "string",
+                            "description": "msku",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "shopName": {
+                            "type": "string",
+                            "description": "多平台站点名称",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "memo": {
+                            "type": "string",
+                            "description": "备注",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "platformId": {
+                            "type": "string",
+                            "description": "平台编码",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "platformName": {
+                            "type": "string",
+                            "description": "平台名称",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "warehouseId": {
+                            "type": "integer",
+                            "description": "亚马逊仓库ID",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "recordDate": {
+                            "type": "string",
+                            "description": "记录时间 [yyyy-MM-dd HH:mm:ss]",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "shopId": {
+                            "type": "string",
+                            "description": "多平台站点ID",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "marketId": {
+                            "type": "string",
+                            "description": "站点ID",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          }
+                        },
+                        "exampleSetFlag": false,
+                        "types": [
+                          "object"
+                        ]
+                      },
+                      "types": [
+                        "array"
+                      ]
+                    },
+                    "chargedAttribute": {
+                      "type": "boolean",
+                      "description": "带电属性",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "boolean"
+                      ]
+                    },
+                    "liquidAttribute": {
+                      "type": "boolean",
+                      "description": "液体属性",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "boolean"
+                      ]
+                    },
+                    "magneticAttribute": {
+                      "type": "boolean",
+                      "description": "带磁属性",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "boolean"
+                      ]
+                    },
+                    "pasteAttribute": {
+                      "type": "boolean",
+                      "description": "膏体属性",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "boolean"
+                      ]
+                    },
+                    "powderAttribute": {
+                      "type": "boolean",
+                      "description": "粉末属性",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "boolean"
+                      ]
+                    },
+                    "batteryAttribute": {
+                      "type": "boolean",
+                      "description": "纯电属性",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "boolean"
+                      ]
+                    },
+                    "woodenAttribute": {
+                      "type": "boolean",
+                      "description": "木制属性",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "boolean"
+                      ]
+                    },
+                    "level": {
+                      "type": "integer",
+                      "description": "产品等级",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "levelName": {
+                      "type": "string",
+                      "description": "产品等级名",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "reportElement": {
+                      "type": "string",
+                      "description": "申报要素",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "reportModel": {
+                      "type": "string",
+                      "description": "申报型号",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "tagList": {
+                      "type": "array",
+                      "description": "产品标签",
+                      "exampleSetFlag": false,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer",
+                            "description": "标签id",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "name": {
+                            "type": "string",
+                            "description": "标签名称",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          }
+                        },
+                        "exampleSetFlag": false,
+                        "types": [
+                          "object"
+                        ]
+                      },
+                      "types": [
+                        "array"
+                      ]
+                    },
+                    "variantProperty": {
+                      "type": "string",
+                      "description": "变体属性",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "customizeFiledData": {
+                      "type": "object",
+                      "description": "自定义字段",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "object"
+                      ]
+                    }
+                  },
+                  "exampleSetFlag": false,
+                  "types": [
+                    "object"
+                  ]
+                },
+                "types": [
+                  "array"
+                ]
+              },
+              "total": {
+                "type": "integer",
+                "description": "总条数",
+                "format": "int64",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              }
+            },
+            "description": "接口返回数据",
+            "exampleSetFlag": false,
+            "types": [
+              "object"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "description": "接口返回提示消息",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "traceId": {
+            "type": "string",
+            "description": "接口返回traceId",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          }
+        },
+        "exampleSetFlag": false,
+        "types": [
+          "object"
+        ]
+      }
+    }
+  }
+}

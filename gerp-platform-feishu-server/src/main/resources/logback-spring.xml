@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false">
+	<!-- spring 配置文件 -->
+	<springProperty scope="context" name="log.save.type" source="logging.save.type" defaultValue="console,sls"/>
+	<springProperty scope="context" name="log.path" source="logging.file.path" defaultValue="/data/logs/${project.artifactId}"/>
+	<springProperty scope="context" name="log.name" source="logging.file.name" defaultValue="${project.artifactId}.log"/>
+	<springProperty scope="context" name="server.name" source="spring.application.name" defaultValue="${project.artifactId}"/>
+	<springProperty scope="context" name="sls.server.endpoint" source="logging.sls.server.endpoint" />
+	<springProperty scope="context" name="sls.access.key.id" source="logging.sls.access.key.id" />
+	<springProperty scope="context" name="sls.access.key.secret" source="logging.sls.access.key.secret" />
+	<springProperty scope="context" name="sls.project.name" source="logging.sls.project.name" />
+	<springProperty scope="context" name="sls.log.store" source="logging.sls.log.store" />
+	<property name="serverName" value="${server.name}"/>
+	<property name="CHARSET" value="UTF-8"/>
+	<property name="STDOUT_PATTERN"
+			  value='[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%level] [%ip] [${PID:- }] [%X{tid}] [%X{traceId:-0}] [%thread] [${serverName}] [%X{traceId:-0}] [%logger{5}\:%line#%M] [%msg] %n'/>
+	<!--    [时间][日志等级][服务器内网IP][进程PID][线程名][服务名称][TraceID][包首字母.类名][日志信息]-->
+	<property name="FILE_PATTERN"
+			  value='[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%level] [%ip] [${PID:-0}] [%thread] [${serverName}] [%X{tid}] [%X{traceId:-0}] [%logger{5}\:%line#%M] [%msg] %n'/>
+	<!--    [时间][日志等级][服务器内网IP][进程PID][线程名][服务名称][TraceID][包首字母.类名][日志信息]-->
+
+	<conversionRule conversionWord="ip" converterClass="com.gerp.platform.feishu.server.config.IpConvert"/>
+
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<charset>${CHARSET}</charset>
+			<layout class="ch.qos.logback.classic.PatternLayout">
+				<pattern>${STDOUT_PATTERN}</pattern>
+			</layout>
+		</encoder>
+	</appender>
+
+	<!-- 全等级日志文件 -->
+	<appender name="allAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 只记录warn及以上级别的日志 -->
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名，按天生成文件名 -->
+			<fileNamePattern>${log.path}/${log.name}.%d{yyyy-MM-dd_HH}.%i</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!--按时间回滚的同时，按文件大小来回滚 -->
+				<maxFileSize>200mb</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<charset>${CHARSET}</charset>
+			<pattern>${FILE_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<!--SLS上报业务日志appender-->
+	<appender name="loghubAppender" class="com.aliyun.openservices.log.logback.LoghubAppender">
+		<!-- 账号及网络配置 -->
+		<endpoint>${sls.server.endpoint}</endpoint>
+		<accessKeyId>${sls.access.key.id}</accessKeyId>
+		<accessKeySecret>${sls.access.key.secret}</accessKeySecret>
+
+		<!-- sls 项目配置 -->
+		<project>${sls.project.name}</project>
+		<logStore>${sls.log.store}</logStore>
+
+		<!-- 可选项 -->
+		<timeFormat>yyyy-MM-dd HH:mm:ss</timeFormat>
+		<timeZone>Asia/Shanghai</timeZone>
+
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+
+		<mdcFields>traceId,serverName,PtxId</mdcFields>
+	</appender>
+
+	<!--
+        root节点是必选节点，用来指定最基础的日志输出级别，只有一个level属性
+        level:用来设置打印级别，大小写无关：TRACE, DEBUG, INFO, WARN, ERROR, ALL 和 OFF，
+        不能设置为INHERITED或者同义词NULL。默认是DEBUG
+        可以包含零个或多个元素，标识这个appender将会添加到这个logger。
+    -->
+	<root level="INFO">
+		<if condition='property("log.save.type").contains("file")'>
+			<then>
+				<appender-ref ref="allAppender"/>
+			</then>
+		</if>
+		<if condition='property("log.save.type").contains("console")'>
+			<then>
+				<appender-ref ref="console"/>
+			</then>
+		</if>
+		<if condition='property("log.save.type").contains("sls")'>
+			<then>
+				<appender-ref ref="loghubAppender"/>
+			</then>
+		</if>
+	</root>
+
+</configuration>

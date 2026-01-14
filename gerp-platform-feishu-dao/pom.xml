@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>gerp-platform-feishu</artifactId>
+        <groupId>com.gerp.platform.feishu</groupId>
+        <version>${revision}-${qualifier}</version>
+    </parent>
+    <properties>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+    <artifactId>gerp-platform-feishu-dao</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.gerp.platform.feishu</groupId>
+            <artifactId>gerp-platform-feishu-model</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

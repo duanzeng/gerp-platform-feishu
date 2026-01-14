@@ -1,0 +1,1873 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "积加开发平台OpenApi",
+    "description": "部分动态字段请参考文档",
+    "version": "Beta-1.0"
+  },
+  "servers": [
+    {
+      "url": "https://open.gerpgo.com/api/open"
+    }
+  ],
+  "tags": [
+    {
+      "name": "fulfillment_ship_shipment_page"
+    }
+  ],
+  "paths": {
+    "/fulfillment/ship/shipment/page": {
+      "post": {
+        "tags": [
+          "fulfillment_ship_shipment_page"
+        ],
+        "summary": "查询FBA货件列表",
+        "description": "",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "accessToken",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FulfillmentShipShipmentPageVO",
+                "exampleSetFlag": false
+              },
+              "exampleSetFlag": false
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FulfillmentShipShipmentPageModel",
+                  "exampleSetFlag": false
+                },
+                "exampleSetFlag": false
+              }
+            }
+          },
+          "400": {
+            "description": "https://open.gerpgo.com/qa"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FulfillmentShipShipmentPageVO": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "description": "页码",
+            "format": "int32",
+            "exampleSetFlag": false,
+            "types": [
+              "integer"
+            ]
+          },
+          "pagesize": {
+            "type": "integer",
+            "description": "每页条数 [最大100条/页]",
+            "format": "int32",
+            "exampleSetFlag": false,
+            "types": [
+              "integer"
+            ]
+          },
+          "statusList": {
+            "type": "array",
+            "description": "单据状态 [卖家已创建货件，但未发货: WORKING; 准备发货: READY_TO_SHIP; 承运人已取件: SHIPPED; 承运人已通知亚马逊运营中心其已知晓货件的存在: IN_TRANSIT; 承运人已将货件配送至亚马逊运营中心: DELIVERED; 货件已在亚马逊运营中心的收货装卸地点登记: CHECKED_IN; 货件已到达亚马逊运营中心，但有部分商品尚未标记为已收到: RECEIVING; 货件已到达亚马逊运营中心，且所有商品已经标记为已收到: CLOSED; 卖家在货件发亚马逊运营中心后取消了货件: CANCELLED; 卖家在将货件发送到亚马逊运营中心之前取消了货件: DELETED; 货件出错，但不是由亚马逊处理的: ERROR]",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "shipmentIdList": {
+            "type": "array",
+            "description": "货件号集合",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "warehouseIds": {
+            "type": "array",
+            "description": "目的仓库ID",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "exampleSetFlag": false,
+              "types": [
+                "integer"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "referenceIdList": {
+            "type": "array",
+            "description": "Reference单号集合",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "relevanceCode": {
+            "type": "string",
+            "description": "关联单号",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "recordStartDate": {
+            "type": "string",
+            "description": "创建日期(开始) [yyyy-MM-dd]",
+            "format": "date",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "recordEndDate": {
+            "type": "string",
+            "description": "创建日期(结束) [yyyy-MM-dd]",
+            "format": "date",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "updatedStartDate": {
+            "type": "string",
+            "description": "更新日期(开始) [yyyy-MM-dd]",
+            "format": "date",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "updatedEndDate": {
+            "type": "string",
+            "description": "更新日期(结束) [yyyy-MM-dd]",
+            "format": "date",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "receivingStartDate": {
+            "type": "string",
+            "description": "收货日期(开始) [yyyy-MM-dd]",
+            "format": "date",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "receivingEndDate": {
+            "type": "string",
+            "description": "收货日期(结束) [yyyy-MM-dd]",
+            "format": "date",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "typeList": {
+            "type": "array",
+            "description": "货件类型：FBA，WFS，AWD",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          }
+        },
+        "exampleSetFlag": false,
+        "types": [
+          "object"
+        ]
+      },
+      "FulfillmentShipShipmentPageModel": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "响应码",
+            "format": "int32",
+            "exampleSetFlag": false,
+            "types": [
+              "integer"
+            ]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "rows": {
+                "type": "array",
+                "description": "接口返回内容分页列表",
+                "exampleSetFlag": false,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "actualDeliveryDate": {
+                      "type": "string",
+                      "description": "实际送达日期",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "areCasesRequired": {
+                      "type": "string",
+                      "description": "商品包装方式",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "areCasesRequiredName": {
+                      "type": "string",
+                      "description": "商品包装方式名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "canShip": {
+                      "type": "boolean",
+                      "description": "是否可发货 [否: 0; 是: 1]",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "boolean"
+                      ]
+                    },
+                    "carrierName": {
+                      "type": "string",
+                      "description": "承运人",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "carrierType": {
+                      "type": "string",
+                      "description": "承运人类型",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "centerId": {
+                      "type": "string",
+                      "description": "亚马逊仓代码",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "createAccount": {
+                      "type": "string",
+                      "description": "创建人",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "createTime": {
+                      "type": "string",
+                      "description": "创建时间",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "decideShip": {
+                      "type": "string",
+                      "description": "是否决定发货",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "declareReceiveDiff": {
+                      "type": "integer",
+                      "description": "申收差异",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "deliveryCountry": {
+                      "type": "string",
+                      "description": "发货国家",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "deliveryQuantity": {
+                      "type": "integer",
+                      "description": "已发总数",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "deliveryTrackingList": {
+                      "type": "array",
+                      "description": "交付跟踪号",
+                      "exampleSetFlag": false,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "dlCode": {
+                            "type": "string",
+                            "description": "交付跟踪码",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "spiltTrackings": {
+                            "type": "array",
+                            "description": "溢出跟踪",
+                            "exampleSetFlag": false,
+                            "items": {
+                              "exampleSetFlag": false
+                            },
+                            "types": [
+                              "array"
+                            ]
+                          }
+                        },
+                        "exampleSetFlag": false,
+                        "types": [
+                          "object"
+                        ]
+                      },
+                      "types": [
+                        "array"
+                      ]
+                    },
+                    "dlCode": {
+                      "type": "string",
+                      "description": "发货单号",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "dlCodeList": {
+                      "type": "array",
+                      "description": "发货单号集合",
+                      "exampleSetFlag": false,
+                      "items": {
+                        "exampleSetFlag": false
+                      },
+                      "types": [
+                        "array"
+                      ]
+                    },
+                    "encaseInfo": {
+                      "type": "string",
+                      "description": "装箱信息",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "expectedDeliveryDate": {
+                      "type": "string",
+                      "description": "预计送达日期（沃尔玛）",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "fbaPackage": {
+                      "type": "integer",
+                      "description": "货件上传装箱信息标记",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "fbaPackageFeedMsg": {
+                      "type": "string",
+                      "description": "货件上传装箱信息标记信息",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "fbaPackageFeedMsgText": {
+                      "type": "string",
+                      "description": "货件上传装箱信息标记信息文本",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "fbaTransport": {
+                      "type": "integer",
+                      "description": "货件上传物流信息标记 [未上传: 0; 已上传: 1]",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "fbaTransportCarrierName": {
+                      "type": "string",
+                      "description": "货件上传物流信息-承运人",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "fbaTransportShipmentType": {
+                      "type": "string",
+                      "description": "货件上传物流信息-货运类型（目前有SP：小包裹快递(SPD)、LTL：零担货运(LTL)）",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "fbaTransportTrackingIds": {
+                      "type": "string",
+                      "description": "",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "flBindingDocument": {
+                      "type": "string",
+                      "description": "头程单是否绑定单据",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "flCode": {
+                      "type": "string",
+                      "description": "头程单号",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "flStatus": {
+                      "type": "integer",
+                      "description": "头程单状态",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "fromAddress": {
+                      "type": "string",
+                      "description": "发货地址",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "fromAddressDTO": {
+                      "type": "object",
+                      "properties": {
+                        "addressLine1": {
+                          "type": "string",
+                          "description": "地址1",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "addressLine2": {
+                          "type": "string",
+                          "description": "地址2",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "city": {
+                          "type": "string",
+                          "description": "市",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "country": {
+                          "type": "string",
+                          "description": "国家",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "district": {
+                          "type": "string",
+                          "description": "街道",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "id": {
+                          "type": "integer",
+                          "description": "id",
+                          "format": "int32",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "integer"
+                          ]
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "地址名",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "phone": {
+                          "type": "string",
+                          "description": "电话",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "postalCode": {
+                          "type": "string",
+                          "description": "邮编",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "state": {
+                          "type": "string",
+                          "description": "州",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "description": "发货地址实体",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "object"
+                      ]
+                    },
+                    "handleStatus": {
+                      "type": "integer",
+                      "description": "处理进程",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "id",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "inboundOrderId": {
+                      "type": "string",
+                      "description": "Inbound Order ID",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "labelPrepType": {
+                      "type": "string",
+                      "description": "贴标方",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "labelPrepTypeName": {
+                      "type": "string",
+                      "description": "贴标方名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "marketId": {
+                      "type": "integer",
+                      "description": "站点id",
+                      "format": "int64",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "marketName": {
+                      "type": "string",
+                      "description": "站点名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "memo": {
+                      "type": "string",
+                      "description": "备注",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "货件名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "numOfPrintLabels": {
+                      "type": "integer",
+                      "description": "箱唛打印次数",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "numberOfPackages": {
+                      "type": "integer",
+                      "description": "箱数",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "oldFbaPackage": {
+                      "type": "integer",
+                      "description": "货件上传装箱信息标记old",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "quantityCanDelivered": {
+                      "type": "integer",
+                      "description": "可发量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "quantityDelivered": {
+                      "type": "integer",
+                      "description": "已发量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "quantityPacked": {
+                      "type": "integer",
+                      "description": "已排载量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "quantityReceived": {
+                      "type": "integer",
+                      "description": "已收量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "quantityShipped": {
+                      "type": "integer",
+                      "description": "申报量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "receiveShipDiff": {
+                      "type": "integer",
+                      "description": "收发差异",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "receivingAt": {
+                      "type": "string",
+                      "description": "开始收货日期",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "recordAt": {
+                      "type": "string",
+                      "description": "创建时间",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "referenceId": {
+                      "type": "string",
+                      "description": "referenceId",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "relevanceCodeQtyByItem": {
+                      "type": "integer",
+                      "description": "关联单据数量(根据明细取值)",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "relevanceCodeQuantity": {
+                      "type": "integer",
+                      "description": "关联单据数据",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "reportQuantityReceived": {
+                      "type": "integer",
+                      "description": "报表已收量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "sellerSkuCount": {
+                      "type": "integer",
+                      "description": "产品种类",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "shipFromAddress": {
+                      "type": "string",
+                      "description": "发货地址json",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "shipStatus": {
+                      "type": "string",
+                      "description": "发货情况",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "shipToCountryCode": {
+                      "type": "string",
+                      "description": "目的国家",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "shipmentDetailVos": {
+                      "type": "array",
+                      "description": "货件关联产品明细",
+                      "exampleSetFlag": false,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "areCasesRequired": {
+                            "type": "boolean",
+                            "description": "包装类型",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "boolean"
+                            ]
+                          },
+                          "asin": {
+                            "type": "string",
+                            "description": "ASIN",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "cartonGrossWeight": {
+                            "type": "number",
+                            "description": "单箱毛重",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "cartonHeight": {
+                            "type": "number",
+                            "description": "外箱尺寸-高",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "cartonLength": {
+                            "type": "number",
+                            "description": "外箱尺寸-长",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "cartonNetWeight": {
+                            "type": "number",
+                            "description": "单箱净重",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "cartonNum": {
+                            "type": "integer",
+                            "description": "单箱数量",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "cartonUnit": {
+                            "type": "string",
+                            "description": "外箱尺寸-单位",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "cartonWidth": {
+                            "type": "number",
+                            "description": "外箱尺寸-宽",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "category": {
+                            "type": "string",
+                            "description": "品类",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "clearCustomTaxRate": {
+                            "type": "number",
+                            "description": "清关税率",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "declareDutyUnitPrice": {
+                            "type": "number",
+                            "description": "关税申报单价",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "declareReceiveDiff": {
+                            "type": "integer",
+                            "description": "申收差异",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "declareShipDiff": {
+                            "type": "integer",
+                            "description": "申发差异",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "dlCode": {
+                            "type": "string",
+                            "description": "发货单号",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "dlCodeList": {
+                            "type": "array",
+                            "description": "发货单",
+                            "exampleSetFlag": false,
+                            "items": {
+                              "exampleSetFlag": false
+                            },
+                            "types": [
+                              "array"
+                            ]
+                          },
+                          "dutyCurrency": {
+                            "type": "string",
+                            "description": "关税币种",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "fid": {
+                            "type": "integer",
+                            "description": "",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "fnsku": {
+                            "type": "string",
+                            "description": "FNSKU",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "grossWeight": {
+                            "type": "number",
+                            "description": "毛重",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "gtin": {
+                            "type": "string",
+                            "description": "gtin",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "id": {
+                            "type": "integer",
+                            "description": "",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "ifCommodityInspection": {
+                            "type": "boolean",
+                            "description": "是否商检",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "boolean"
+                            ]
+                          },
+                          "imageUrl": {
+                            "type": "string",
+                            "description": "图片",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "itemId": {
+                            "type": "string",
+                            "description": "Item ID",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "labelPrepType": {
+                            "type": "string",
+                            "description": "标签类型",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "listingTitle": {
+                            "type": "string",
+                            "description": "商品标题",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "listingTitlePrint": {
+                            "type": "string",
+                            "description": "商品标题（打印）",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "msku": {
+                            "type": "string",
+                            "description": "MSKU",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "netWeight": {
+                            "type": "number",
+                            "description": "净重",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "packHeight": {
+                            "type": "number",
+                            "description": "包装尺寸-高",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "packLength": {
+                            "type": "number",
+                            "description": "包装尺寸-长",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "packUnit": {
+                            "type": "string",
+                            "description": "包装尺寸-单位",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "packWidth": {
+                            "type": "number",
+                            "description": "包装尺寸-宽",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "productLevel": {
+                            "type": "string",
+                            "description": "产品级别",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "productName": {
+                            "type": "string",
+                            "description": "产品名称",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "productNamePrint": {
+                            "type": "string",
+                            "description": "产品名称(打印)",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "productOperationLevel": {
+                            "type": "string",
+                            "description": "产品运营情况-级别",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "productOperationStatus": {
+                            "type": "string",
+                            "description": "产品运营情况-状态",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "purchaseCurrency": {
+                            "type": "string",
+                            "description": "采购币种",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "quantityCanDelivered": {
+                            "type": "integer",
+                            "description": "可发量",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "quantityDelivered": {
+                            "type": "integer",
+                            "description": "已发量",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "quantityDelivery": {
+                            "type": "integer",
+                            "description": "已发量",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "quantityPacked": {
+                            "type": "integer",
+                            "description": "已排载量",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "quantityReceived": {
+                            "type": "integer",
+                            "description": "已收量",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "quantityShipped": {
+                            "type": "integer",
+                            "description": "申报量",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "receiveShipDiff": {
+                            "type": "integer",
+                            "description": "收发差异",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "relevanceCodeQuantity": {
+                            "type": "integer",
+                            "description": "关联单据量",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "relevanceCodes": {
+                            "type": "array",
+                            "description": "关联单据",
+                            "exampleSetFlag": false,
+                            "items": {
+                              "exampleSetFlag": false
+                            },
+                            "types": [
+                              "array"
+                            ]
+                          },
+                          "reportQuantityReceived": {
+                            "type": "integer",
+                            "description": "报表已收量",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          },
+                          "shipToCountryCode": {
+                            "type": "string",
+                            "description": "收货国家",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "shipmentId": {
+                            "type": "string",
+                            "description": "货件号",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "singleGrossWeight": {
+                            "type": "number",
+                            "description": "单品毛重",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "singleHeight": {
+                            "type": "number",
+                            "description": "单品尺寸-高",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "singleLength": {
+                            "type": "number",
+                            "description": "单品尺寸-长",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "singleNetWeight": {
+                            "type": "number",
+                            "description": "单品净重",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "singlePurchasePrice": {
+                            "type": "number",
+                            "description": "单品采购单价",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "singleUnit": {
+                            "type": "string",
+                            "description": "单品尺寸-单位",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "singleWidth": {
+                            "type": "number",
+                            "description": "单品尺寸-宽",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "sku": {
+                            "type": "string",
+                            "description": "SKU",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "skuType": {
+                            "type": "string",
+                            "description": "产品类型",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "specialAttributes": {
+                            "type": "string",
+                            "description": "特殊属性",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "upc": {
+                            "type": "string",
+                            "description": "upc",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "string"
+                            ]
+                          },
+                          "vol": {
+                            "type": "number",
+                            "description": "体积",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "volumeWeightCoefficient": {
+                            "type": "number",
+                            "description": "体积重系数",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "number"
+                            ]
+                          },
+                          "warehouseId": {
+                            "type": "integer",
+                            "description": "目的仓库",
+                            "format": "int32",
+                            "exampleSetFlag": false,
+                            "types": [
+                              "integer"
+                            ]
+                          }
+                        },
+                        "exampleSetFlag": false,
+                        "types": [
+                          "object"
+                        ]
+                      },
+                      "types": [
+                        "array"
+                      ]
+                    },
+                    "shipmentId": {
+                      "type": "string",
+                      "description": "Shipment ID",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "shipmentJson": {
+                      "type": "string",
+                      "description": "货件json",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "sortRule": {
+                      "type": "string",
+                      "description": "排序规则",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "状态",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "toAddress": {
+                      "type": "string",
+                      "description": "配送地址",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "toAddressDTO": {
+                      "type": "object",
+                      "properties": {
+                        "addressLine1": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "addressLine2": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "city": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "country": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "district": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "id": {
+                          "type": "integer",
+                          "description": "",
+                          "format": "int32",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "integer"
+                          ]
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "phone": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "postalCode": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "state": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        }
+                      },
+                      "description": "配送地址",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "object"
+                      ]
+                    },
+                    "totalBoxes": {
+                      "type": "integer",
+                      "description": "装箱数",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "totalGrossWeight": {
+                      "type": "number",
+                      "description": "总毛重",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "totalNetWeight": {
+                      "type": "number",
+                      "description": "总净重",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "totalVol": {
+                      "type": "number",
+                      "description": "总体积",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "trackings": {
+                      "type": "string",
+                      "description": "运输单号",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "transport": {
+                      "type": "string",
+                      "description": "物流方式",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "类型",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "updateTime": {
+                      "type": "string",
+                      "description": "更新时间（数据更新时间，无业务意义）",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "description": "更新时间（业务状态变更时间）",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "updatedExpectedDeliveryDate": {
+                      "type": "string",
+                      "description": "更新的预计送达日期",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "viewHandleStatus": {
+                      "type": "integer",
+                      "description": "处理进程展示",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "waitDeliveryQuantity": {
+                      "type": "integer",
+                      "description": "待发数量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "warehouseFromAddress": {
+                      "type": "object",
+                      "properties": {
+                        "addressLine1": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "addressLine2": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "city": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "countryCode": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "districtOrCounty": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "itemsUpdateVal": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "marketId": {
+                          "type": "integer",
+                          "description": "",
+                          "format": "int32",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "integer"
+                          ]
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "postalCode": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "shipToCountryCode": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "stateOrProvinceCode": {
+                          "type": "string",
+                          "description": "",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "string"
+                          ]
+                        },
+                        "warehouseId": {
+                          "type": "integer",
+                          "description": "",
+                          "format": "int32",
+                          "exampleSetFlag": false,
+                          "types": [
+                            "integer"
+                          ]
+                        }
+                      },
+                      "description": "发货地址",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "object"
+                      ]
+                    },
+                    "warehouseId": {
+                      "type": "integer",
+                      "description": "仓库id",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "warehouseName": {
+                      "type": "string",
+                      "description": "仓库名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "deliveryStartDateStr": {
+                      "type": "string",
+                      "description": "亚马逊送达开始时间",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "deliveryEndDateStr": {
+                      "type": "string",
+                      "description": "亚马逊送达结束时间",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "exampleSetFlag": false,
+                  "types": [
+                    "object"
+                  ]
+                },
+                "types": [
+                  "array"
+                ]
+              },
+              "total": {
+                "type": "integer",
+                "description": "总条数",
+                "format": "int64",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              },
+              "page": {
+                "type": "integer",
+                "description": "页码",
+                "format": "int32",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              },
+              "pagesize": {
+                "type": "integer",
+                "description": "页大小",
+                "format": "int32",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              }
+            },
+            "description": "接口返回数据",
+            "exampleSetFlag": false,
+            "types": [
+              "object"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "description": "接口返回提示消息",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "traceId": {
+            "type": "string",
+            "description": "接口返回traceId",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          }
+        },
+        "exampleSetFlag": false,
+        "types": [
+          "object"
+        ]
+      }
+    }
+  }
+}

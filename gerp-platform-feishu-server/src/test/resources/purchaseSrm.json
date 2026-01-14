@@ -1,0 +1,865 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "积加开发平台OpenApi",
+    "description": "部分动态字段请参考文档",
+    "version": "Beta-1.0"
+  },
+  "servers": [
+    {
+      "url": "https://open.gerpgo.com/api/open"
+    }
+  ],
+  "tags": [
+    {
+      "name": "purchase_srm_procure_page"
+    }
+  ],
+  "paths": {
+    "/purchase/srm/procure/page": {
+      "post": {
+        "tags": [
+          "purchase_srm_procure_page"
+        ],
+        "summary": "查询采购订单列表",
+        "description": "",
+        "parameters": [
+          {
+            "name": "accessToken",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "accessToken",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PurchaseSrmProcurePageVO",
+                "exampleSetFlag": false
+              },
+              "exampleSetFlag": false
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PurchaseSrmProcurePageModel",
+                  "exampleSetFlag": false
+                },
+                "exampleSetFlag": false
+              }
+            }
+          },
+          "400": {
+            "description": "https://open.gerpgo.com/qa"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PurchaseSrmProcurePageVO": {
+        "type": "object",
+        "properties": {
+          "pageInfo": {
+            "type": "object",
+            "properties": {
+              "page": {
+                "type": "integer",
+                "description": "页码",
+                "format": "int32",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              },
+              "pagesize": {
+                "type": "integer",
+                "description": "每页条数 [最大100条/页]",
+                "format": "int32",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              }
+            },
+            "description": "分页对象",
+            "exampleSetFlag": false,
+            "types": [
+              "object"
+            ]
+          },
+          "codeList": {
+            "type": "array",
+            "description": "采购单号",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "customCode": {
+            "type": "string",
+            "description": "自定义单号",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "customCodeList": {
+            "type": "array",
+            "description": "自定义单号集合",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "supplierCodeList": {
+            "type": "array",
+            "description": "供应商code",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "skuList": {
+            "type": "array",
+            "description": "sku集合",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "invoicesStatusList": {
+            "type": "array",
+            "description": "单据状态 [0-草稿，1-审核驳回，2-审核中，3-待交货，4-已作废，5-变更中，6-交货中，7-全部交货，8-已完成，99-进行中]",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "integer",
+              "format": "int32",
+              "exampleSetFlag": false,
+              "types": [
+                "integer"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          },
+          "applyStatus": {
+            "type": "string",
+            "description": "请款池申请状态 [un_apply-未申请，partial_apply-部分申请，full_apply-全部申请]",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "createStartDate": {
+            "type": "string",
+            "description": "创建开始时间 [yyyy-MM-dd HH:mm:ss]",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "createEndDate": {
+            "type": "string",
+            "description": "创建结束时间 [yyyy-MM-dd HH:mm:ss]",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "beginUpdateTime": {
+            "type": "string",
+            "description": "更新开始 [yyyy-MM-dd HH:mm:ss]",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "endUpdateTime": {
+            "type": "string",
+            "description": "更新结束 [yyyy-MM-dd HH:mm:ss]",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "reviewer": {
+            "type": "string",
+            "description": "审核人",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "reviewStartDate": {
+            "type": "string",
+            "description": "审单时间开始时间 [yyyy-MM-dd HH:mm:ss]",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "reviewEndDate": {
+            "type": "string",
+            "description": "审单结束开始时间 [yyyy-MM-dd HH:mm:ss]",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          }
+        },
+        "exampleSetFlag": false,
+        "types": [
+          "object"
+        ]
+      },
+      "PurchaseSrmProcurePageModel": {
+        "type": "object",
+        "properties": {
+          "traceId": {
+            "type": "string",
+            "description": "接口返回traceId",
+            "exampleSetFlag": false,
+            "types": [
+              "string"
+            ]
+          },
+          "code": {
+            "type": "integer",
+            "description": "响应码",
+            "format": "int32",
+            "exampleSetFlag": false,
+            "types": [
+              "integer"
+            ]
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer",
+                "description": "总条数",
+                "format": "int32",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              },
+              "rows": {
+                "type": "array",
+                "description": "接口返回内容分页列表",
+                "exampleSetFlag": false,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "主键ID",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "采购单号",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "purchasePlanCode": {
+                      "type": "string",
+                      "description": "采购计划单号",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "plCreator": {
+                      "type": "string",
+                      "description": "采购计划人",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "supplierCode": {
+                      "type": "string",
+                      "description": "供应商编号",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "supplierName": {
+                      "type": "string",
+                      "description": "供应商名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "paymentType": {
+                      "type": "integer",
+                      "description": "结算方式 [1-现结，2-月结]",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "paymentTypeName": {
+                      "type": "string",
+                      "description": "结算方式名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "paymentDate": {
+                      "type": "integer",
+                      "description": "结算日",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "paymentDesc": {
+                      "type": "string",
+                      "description": "结算描述",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "invoicesStatus": {
+                      "type": "integer",
+                      "description": "单据状态",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "invoicesStatusName": {
+                      "type": "string",
+                      "description": "单据状态名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "supervisorId": {
+                      "type": "integer",
+                      "description": "采购员ID",
+                      "format": "int64",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "supervisor": {
+                      "type": "string",
+                      "description": "采购员",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "totalQuantity": {
+                      "type": "integer",
+                      "description": "总数量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "currency": {
+                      "type": "string",
+                      "description": "币种",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "purchaseAmount": {
+                      "type": "number",
+                      "description": "采购金额",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "totalTaxRebateAmount": {
+                      "type": "number",
+                      "description": "可退税总金额",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "totalAfterTaxRebateAmount": {
+                      "type": "number",
+                      "description": "退税后货值",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "appliedAmount": {
+                      "type": "number",
+                      "description": "已申请金额",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "memo": {
+                      "type": "string",
+                      "description": "备注",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "lotNoCode": {
+                      "type": "string",
+                      "description": "关联交货单号",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "financeStatus": {
+                      "type": "string",
+                      "description": "货值请款状态",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "financeStatusName": {
+                      "type": "string",
+                      "description": "货值请款状态名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "reviewerId": {
+                      "type": "integer",
+                      "description": "审单人ID",
+                      "format": "int64",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "reviewer": {
+                      "type": "string",
+                      "description": "审单人",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "reviewTime": {
+                      "type": "string",
+                      "description": "审单时间",
+                      "format": "date",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "description": "创建时间 [yyyy-MM-dd HH:mm:ss]",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "mergedFlag": {
+                      "type": "integer",
+                      "description": "被合并标识",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "paymentRate": {
+                      "type": "number",
+                      "description": "预付比例",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "paymentCycle": {
+                      "type": "integer",
+                      "description": "结算周期",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "actualQuantity": {
+                      "type": "integer",
+                      "description": "实际数量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "inboundQuantity": {
+                      "type": "integer",
+                      "description": "出入库数量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "creator": {
+                      "type": "string",
+                      "description": "创建人",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "customCode": {
+                      "type": "string",
+                      "description": "自定义订单号",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "assembleSkuOrder": {
+                      "type": "boolean",
+                      "description": "是否是组合产品采购订单",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "boolean"
+                      ]
+                    },
+                    "skuSpecies": {
+                      "type": "integer",
+                      "description": "产品种类",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "purchaseSubjectId": {
+                      "type": "integer",
+                      "description": "采购主体ID",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "purchaseSubjectName": {
+                      "type": "string",
+                      "description": "采购主体",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "purchaseOtherFee": {
+                      "type": "number",
+                      "description": "采购其他费用",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "number"
+                      ]
+                    },
+                    "applyStatus": {
+                      "type": "string",
+                      "description": "请款池申请状态 [un_apply-未申请，partial_apply-部分申请，full_apply-全部申请]",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "applyStatusStr": {
+                      "type": "string",
+                      "description": "请款池申请状态，中文名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "paymentStatus": {
+                      "type": "string",
+                      "description": "请款池支付状态 [un_payment-未支付，partial_payment-部分支付，full_payment-全部支付]",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "paymentStatusStr": {
+                      "type": "string",
+                      "description": "请款池支付状态，中文名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "paymentRuleCode": {
+                      "type": "string",
+                      "description": "付款条件编码",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "paymentRuleVersion": {
+                      "type": "string",
+                      "description": "付款条件版本",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "paymentRuleExpireDateType": {
+                      "type": "string",
+                      "description": "付款条件到期日期类型",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "businessCode": {
+                      "type": "string",
+                      "description": "第三方平台单号（1688单号）",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "purchaseType": {
+                      "type": "integer",
+                      "description": "采购类型 [0-普通订单，1-1688采购，2-委外采购]",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "purchaseTypeName": {
+                      "type": "string",
+                      "description": "采购类型名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "businessOrderStatus": {
+                      "type": "string",
+                      "description": "第三方平台订单状态编码",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "businessOrderStatusName": {
+                      "type": "string",
+                      "description": "第三方平台订单状态名称",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    },
+                    "relevancePoCodeList": {
+                      "type": "array",
+                      "description": "关联单号集合",
+                      "exampleSetFlag": false,
+                      "items": {
+                        "type": "string",
+                        "exampleSetFlag": false,
+                        "types": [
+                          "string"
+                        ]
+                      },
+                      "types": [
+                        "array"
+                      ]
+                    },
+                    "childTotalQuantity": {
+                      "type": "integer",
+                      "description": "子件总采购量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "parentTotalQuantity": {
+                      "type": "integer",
+                      "description": "母件总采购量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "childActualQuantity": {
+                      "type": "integer",
+                      "description": "子件总实交量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "parentActualQuantity": {
+                      "type": "integer",
+                      "description": "母件总实交量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "childInboundQuantity": {
+                      "type": "integer",
+                      "description": "子件总入库量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "parentInboundQuantity": {
+                      "type": "integer",
+                      "description": "母件总入库量",
+                      "format": "int32",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "integer"
+                      ]
+                    },
+                    "updateTime": {
+                      "type": "string",
+                      "description": "更新时间 [yyyy-MM-dd HH:mm:ss]",
+                      "exampleSetFlag": false,
+                      "types": [
+                        "string"
+                      ]
+                    }
+                  },
+                  "exampleSetFlag": false,
+                  "types": [
+                    "object"
+                  ]
+                },
+                "types": [
+                  "array"
+                ]
+              },
+              "page": {
+                "type": "integer",
+                "description": "当前第几页",
+                "format": "int32",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              },
+              "pagesize": {
+                "type": "integer",
+                "description": "当前每页条数",
+                "format": "int32",
+                "exampleSetFlag": false,
+                "types": [
+                  "integer"
+                ]
+              }
+            },
+            "description": "接口返回数据",
+            "exampleSetFlag": false,
+            "types": [
+              "object"
+            ]
+          },
+          "messages": {
+            "type": "array",
+            "description": "提示消息",
+            "exampleSetFlag": false,
+            "items": {
+              "type": "string",
+              "exampleSetFlag": false,
+              "types": [
+                "string"
+              ]
+            },
+            "types": [
+              "array"
+            ]
+          }
+        },
+        "exampleSetFlag": false,
+        "types": [
+          "object"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+nacos:
+  core:
+    auth:
+      enabled: true
+  config:
+    server:
+      addr: ${NACOS_SERVER_ADDR:http://mse-03d80ed6-nacos-ans.mse.aliyuncs.com:8848}
+      username: ${NACOS_USER_NAME:nacos}
+      password: ${NACOS_PASSWORD:nacos}
+spring:
+  application:
+    name: gerp-platform-feishu
+  cloud:
+    nacos:
+      username: ${NACOS_USER_NAME:nacos}
+      password: ${NACOS_PASSWORD:nacos}
+      discovery:
+        server-addr: ${nacos.config.server.addr}
+        namespace: ${spring.profiles.active}
+        group: ${NACOS_GROUP:dev}
+        cluster-name: ${CLUSTER_NAME:master}
+      config:
+        server-addr: ${nacos.config.server.addr}
+        namespace: ${spring.profiles.active}
+        shared-configs:
+          - dataId: gerp-platform-feishu.yaml
+            group: ${spring.profiles.active}
+            refresh: true
+          - dataId: common-group-config.yaml
+            group: common
+            refresh: true
+        group: ${spring.profiles.active}
